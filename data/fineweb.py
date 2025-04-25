@@ -23,8 +23,7 @@ import tiktoken
 # from huggingface_hub import snapshot_download
 from datasets import load_dataset
 from tqdm import tqdm
-import argparse
-import numpy as np
+
 def write_datafile(filename, toks):
     """ 
     Saves token data as a .bin file, for reading in C.
@@ -66,8 +65,9 @@ elif args.version == "100B":
     local_dir = "fineweb100B"
     remote_name = "sample-100BT"
 
-# create the cache the local directory if it doesn't exist yet
-DATA_CACHE_DIR = os.path.join(os.path.dirname(__file__), local_dir)
+# Create the specified directory path
+BASE_DATA_DIR = "/fast/slaing/data/lm/fineweb"
+DATA_CACHE_DIR = os.path.join(BASE_DATA_DIR, local_dir)
 os.makedirs(DATA_CACHE_DIR, exist_ok=True)
 
 # download the dataset
